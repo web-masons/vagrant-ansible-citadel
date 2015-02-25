@@ -23,7 +23,7 @@
         - ntp
 
     - name: Check NTP service to make sure it's running
-      service: name=ntpd state=started enabled=yes
+      service: name=ntp state=started enabled=yes
       sudo: yes
 
     - name: Install AWS CLI package via Pip

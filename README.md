@@ -53,6 +53,9 @@ place a section like the following into the yml file.
 - src: geerlingguy.firewall
 ```
 
+Once you have updated the `galaxy-requirements.yml` file, you will need to uncomment the line in the `ansible/localhost/provision.sh`
+file that runs ansible galaxy.
+
 ### Vagrant
 
 Once you have the repository cloned, you need only spin up your Vagrant environment. If you need information about

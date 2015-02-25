@@ -34,4 +34,4 @@ ansible-playbook localhost/vagrant.yml --inventory-file=inventory/vagrant.ini --
 # instead -- e.g. http://docs.ansible.com/galaxy.html
 
 # I hate that we have to use force to reinstall, the galaxy command isn't idempotent
-sudo ansible-galaxy install --force -r localhost/galaxy-requirements.yml
+# sudo ansible-galaxy install --force -r localhost/galaxy-requirements.yml
