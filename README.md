@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/web-masons/vagrant-ansible-citadel.svg)](https://travis-ci.org/web-masons/vagrant-ansible-citadel)
 # Vagrant Ansible Citadel
 
 This project contains a Vagrant based development environment using Ansible. As

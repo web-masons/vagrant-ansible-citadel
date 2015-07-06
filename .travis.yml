@@ -1,0 +1,17 @@
+language: python
+python:
+- '2.7'
+before_script:
+- sudo apt-get update -qq
+- sudo apt-get install -qq python-apt python-pycurl
+install:
+- pip install ansible
+- ansible-playbook ansible/localhost/vagrant.yml --inventory-file=ansible/inventory/travis.ini
+  --syntax-check
+- ansible-playbook ansible/localhost/vagrant.yml --inventory-file=ansible/inventory/travis.ini
+  --connection=local
+script:
+- aws --version
+notifications:
+  hipchat:
+    secure: gFm8odryTsbgxxTKvI77NdP1GTStEaCkQtDOp/v1qXKrrE+6ZKRcnmFTzcGHZ9LFFfOSSx9CTZIzXfV6xJYMMyWcDa7QgA2vb9vmRUjuJdxipT9Gko9zSMmFNs0pKYhk0RaPOM4lfu7kGPGxRak9cq/61Z55NsxMDygW+qB8j6k=
