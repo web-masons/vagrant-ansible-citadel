@@ -9,7 +9,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
 
     # Hashicorp standard Ubuntu 12.04 LTS 64-bit box
-    config.vm.define "precise64" do |precise64|
+    config.vm.define "precise64", autostart: false do |precise64|
       precise64.vm.box = "hashicorp/precise64"
 
       # Change some default options for better experience
@@ -26,7 +26,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
     # Standard Ubuntu 14.04 LTS 64-bit box
-    config.vm.define "trusty64" do |trusty64|
+    config.vm.define "trusty64", primary: true do |trusty64|
       trusty64.vm.box = "ubuntu/trusty64"
 
       # Change some default options for better experience
