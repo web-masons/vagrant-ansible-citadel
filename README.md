@@ -25,37 +25,6 @@ out of sync.
 $ vagrant plugin install vagrant-vbguest
 ```
 
-### Setup
-
-To begin using the environment, you will need to clone it from GitHub. Note, this project uses
-submodules, so you will need to clone the repository using the recursive parameter as follows.
-
-```bash
-$ git clone --recursive git@github.com:oakensoul/vagrant-ansible-citadel.git
-```
-
-If you forget to clone using --recursive, you will need to run the following `git submodule` commands:
-```bash
-$ git submodule init
-$ git submodule update --recursive
-```
-
-### Ansible Galaxy
-
-If you have any roles you wish to install inside your vagrant environment from Ansible Galaxy, place them in the
-`ansible/localhost/galaxy-requirements.yml` file. For example, if you wished to install GeerlingGuy's Firewall role,
-place a section like the following into the yml file.
-
-```bash
-# Install GeerlingGuy's Firewall Role
-#   https://galaxy.ansible.com/list#/roles/451
-#   https://github.com/geerlingguy/ansible-role-firewall
-- src: geerlingguy.firewall
-```
-
-Once you have updated the `galaxy-requirements.yml` file, you will need to uncomment the line in the `ansible/localhost/provision.sh`
-file that runs ansible galaxy.
-
 ### Vagrant
 
 Once you have the repository cloned, you need only spin up your Vagrant environment. If you need information about
@@ -129,9 +98,9 @@ You will receive output that looks something like the following:
 ```bash
 {
     "Credentials": {
-        "SecretAccessKey": "IwK1V7ASDFADSFADFASDFASDFadsfasdfasdfadsfasdfasdf45gsdfg", 
-        "SessionToken": "AQoDYXdzEGsagALvxo+QSQkIk3qQuJ9SPIs4A/hi+qZJeQBEb4h545yhb45hb45yb45yb4hy54CB8IqUyIyS8r6I4Y/Nu+EoO4Q22GJbumCu1QGE2islfkgjlkKJTSfdgj5lkjW+5aYF", 
-        "Expiration": "2015-02-10T13:30:45Z", 
+        "SecretAccessKey": "IwK1V7ASDFADSFADFASDFASDFadsfasdfasdfadsfasdfasdf45gsdfg",
+        "SessionToken": "AQoDYXdzEGsagALvxo+QSQkIk3qQuJ9SPIs4A/hi+qZJeQBEb4h545yhb45hb45yb45yb4hy54CB8IqUyIyS8r6I4Y/Nu+EoO4Q22GJbumCu1QGE2islfkgjlkKJTSfdgj5lkjW+5aYF",
+        "Expiration": "2015-02-10T13:30:45Z",
         "AccessKeyId": "ASIAZZ7ZZZZZZZZDFASDFASDFADF"
     }
 }
@@ -173,4 +142,3 @@ It's much easier to type all that if you go into the directory where the playboo
 $ cd \vagrant\ansible\playbooks
 $ ansible-playbook setup.yml --inventory=../inventory/local_hosts --connection=local
 ```
-
