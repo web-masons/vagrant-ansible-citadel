@@ -9,16 +9,37 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
 
     # Hashicorp standard Ubuntu 12.04 LTS 64-bit box
-    config.vm.box = "hashicorp/precise64"
+    config.vm.define "precise64" do |precise64|
+      precise64.vm.box = "hashicorp/precise64"
 
-    # Forward SSH keys to the Guest VM
-    config.ssh.forward_agent = true
+      # Change some default options for better experience
+      precise64.vm.provider :virtualbox do |vb|
+          # Sets VM name + millis when started
+          vb.name = "ansible-citadel-precise64" + "-" + Time.now.to_f.to_i.to_s
 
-    # Change some default options for better experience, up memory and change VM name
-    config.vm.provider :virtualbox do |vb|
-        # Sets VM name equal to the parent directory + millis when started
-        vb.name = Dir.pwd().split("/")[-1] + "-" + Time.now.to_f.to_i.to_s
-        vb.memory = 2048
+          # Allocate memory to the box
+          vb.memory = 1024
+
+          # Prevent VirtualBox from using up all of your CPU, limiting to 25% of CPU
+          vb.customize ["modifyvm", :id, "--cpuexecutioncap", "25"]
+      end
+    end
+
+    # Standard Ubuntu 14.04 LTS 64-bit box
+    config.vm.define "trusty64" do |trusty64|
+      trusty64.vm.box = "ubuntu/trusty64"
+
+      # Change some default options for better experience
+      trusty64.vm.provider :virtualbox do |vb|
+          # Sets VM name + millis when started
+          vb.name = "ansible-citadel-trusty64" + "-" + Time.now.to_f.to_i.to_s
+
+          # Allocate memory to the box
+          vb.memory = 1024
+
+          # Prevent VirtualBox from using up all of your CPU, limiting to 25% of CPU
+          vb.customize ["modifyvm", :id, "--cpuexecutioncap", "25"]
+      end
     end
 
     # We're going to use the shell provider to install Ansible so that we can run
@@ -28,4 +49,3 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         :keep_color => true,
         :inline => "export PYTHONUNBUFFERED=1 && export ANSIBLE_FORCE_COLOR=1 && cd /vagrant/ansible/localhost && ./provision.sh"
 end
-

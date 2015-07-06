@@ -3,10 +3,6 @@
       apt: update-cache=yes cache_valid_time=86400
       sudo: yes
 
-    - name: Update all packages
-      apt: upgrade=dist
-      sudo: yes
-
     - name: install basic packages
       sudo: yes
       apt: pkg={{ item }} state=latest
@@ -14,7 +10,7 @@
       with_items:
         - curl
         - vim
-        - libxslt1-dev 
+        - libxslt1-dev
         - libxml2-dev
         - unzip
         - python-pip
